@@ -2,9 +2,9 @@ const assert = require("assert");
 const Line = require("../src/line.js").Line;
 
 describe("line", () => {
-  it("should give return string when line.to string is called", () => {
+  it("should return string when line.to string is called", () => {
     const actualValue = new Line(0, 0, 0, 0);
-    const expectedValue = "{x1:0,y1:0,x2:0,y2:0}";
+    const expectedValue = "line:(0,0),(0,0)";
     assert.deepStrictEqual(actualValue.toString(), expectedValue);
   });
   it("should compare two line segments and return true if they are equal", () => {
