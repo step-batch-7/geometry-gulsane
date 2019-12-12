@@ -1,3 +1,7 @@
+const arePointsEqual = function(point1, point2) {
+  return point1.x == point2.x && point1.y == point2.y;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = endA;
@@ -7,12 +11,10 @@ class Line {
     return `line:(${this.endA.x},${this.endA.y}),(${this.endB.x},${this.endB.y})`;
   }
   isEqual(otherLine) {
-    const isX1Equal = this.endA.x == otherLine.endA.x;
-    const isY1Equal = this.endA.y == otherLine.endA.y;
-    const isX2Equal = this.endB.x == otherLine.endB.x;
-    const isY2Equal = this.endB.y == otherLine.endB.y;
     const isTypeEqual = this instanceof Line && otherLine instanceof Line;
-    return isX1Equal && isY1Equal && isX2Equal && isY2Equal && isTypeEqual;
+    const areEndAEqual = arePointsEqual(this.endA, otherLine.endA);
+    const areEndBEqual = arePointsEqual(this.endB, otherLine.endB);
+    return areEndAEqual && areEndBEqual && isTypeEqual;
   }
 }
 
