@@ -13,7 +13,8 @@ class Line {
     const isY1Equal = this.y1 == otherLine.y1;
     const isX2Equal = this.x2 == otherLine.x2;
     const isY2Equal = this.y2 == otherLine.y2;
-    return isX1Equal && isY1Equal && isX2Equal && isY2Equal;
+    const isTypeEqual = this instanceof Line && otherLine instanceof Line;
+    return isX1Equal && isY1Equal && isX2Equal && isY2Equal && isTypeEqual;
   }
 }
 
