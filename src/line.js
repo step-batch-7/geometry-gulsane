@@ -1,18 +1,16 @@
 class Line {
-  constructor(x1, y1, x2, y2) {
-    this.x1 = x1;
-    this.y1 = y1;
-    this.x2 = x2;
-    this.y2 = y2;
+  constructor(endA, endB) {
+    this.endA = endA;
+    this.endB = endB;
   }
   toString() {
-    return `line:(${this.x1},${this.y1}),(${this.x2},${this.y2})`;
+    return `line:(${this.endA.x},${this.endA.y}),(${this.endB.x},${this.endB.y})`;
   }
   isEqual(otherLine) {
-    const isX1Equal = this.x1 == otherLine.x1;
-    const isY1Equal = this.y1 == otherLine.y1;
-    const isX2Equal = this.x2 == otherLine.x2;
-    const isY2Equal = this.y2 == otherLine.y2;
+    const isX1Equal = this.endA.x == otherLine.endA.x;
+    const isY1Equal = this.endA.y == otherLine.endA.y;
+    const isX2Equal = this.endB.x == otherLine.endB.x;
+    const isY2Equal = this.endB.y == otherLine.endB.y;
     const isTypeEqual = this instanceof Line && otherLine instanceof Line;
     return isX1Equal && isY1Equal && isX2Equal && isY2Equal && isTypeEqual;
   }
