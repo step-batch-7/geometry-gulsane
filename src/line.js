@@ -40,6 +40,9 @@ class Line {
     return distance;
   }
   isParallelTo(otherLine) {
+    if (otherLine instanceof Line) {
+      return false;
+    }
     const slopeOfThis = giveSlopeOf(this.endA, this.endB);
     const slopeOfOther = giveSlopeOf(otherLine.endA, otherLine.endB);
     return slopeOfThis === slopeOfOther;
