@@ -65,4 +65,13 @@ describe("Line", () => {
       assert.closeTo(actualValue, expectedValue, 0.5);
     });
   });
+  describe("isParallelTo", () => {
+    it("should validate if line is parallel to other line", () => {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 2 });
+      const line2 = new Line({ x: 0, y: 0 }, { x: 0, y: 2 });
+      const actualValue = line1.isParallelTo(line2);
+      const expectedValue = true;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+  });
 });
