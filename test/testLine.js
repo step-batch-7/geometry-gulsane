@@ -39,4 +39,12 @@ describe("Line", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
   });
+  describe("length", () => {
+    it("should return the length of a given line segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
+      const actualValue = line.length;
+      const expectedValue = 0;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+  });
 });

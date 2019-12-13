@@ -20,6 +20,18 @@ class Line {
       arePointsEqual(this.endB, otherLine.endB)
     );
   }
+  get length() {
+    const differenceOfAbscissas = this.endA.x - this.endB.x;
+    const differenceOfOrdinates = this.endB.y - this.endB.y;
+    const squareOfDifferenceOfAbscissa =
+      differenceOfAbscissas * differenceOfAbscissas;
+    const squareOfDifferenceOfOrdinates =
+      differenceOfOrdinates * differenceOfOrdinates;
+    const distance = Math.sqrt(
+      squareOfDifferenceOfAbscissa + squareOfDifferenceOfOrdinates
+    );
+    return distance;
+  }
 }
 
 module.exports.Line = Line;
