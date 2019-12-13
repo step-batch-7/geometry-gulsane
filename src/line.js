@@ -11,8 +11,11 @@ class Line {
     return `line:(${this.endA.x},${this.endA.y}),(${this.endB.x},${this.endB.y})`;
   }
   isEqual(otherLine) {
+    if (Line === otherLine) return true;
+    if (!(otherLine instanceof Line)) {
+      return false;
+    }
     return (
-      otherLine instanceof Line &&
       arePointsEqual(this.endA, otherLine.endA) &&
       arePointsEqual(this.endB, otherLine.endB)
     );
