@@ -22,7 +22,7 @@ class Line {
   }
   get length() {
     const differenceOfAbscissas = this.endA.x - this.endB.x;
-    const differenceOfOrdinates = this.endB.y - this.endB.y;
+    const differenceOfOrdinates = this.endA.y - this.endB.y;
     const squareOfDifferenceOfAbscissa =
       differenceOfAbscissas * differenceOfAbscissas;
     const squareOfDifferenceOfOrdinates =

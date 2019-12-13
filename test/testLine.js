@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require("chai").assert;
 const Line = require("../src/line.js").Line;
 
 describe("Line", () => {
@@ -40,11 +40,29 @@ describe("Line", () => {
     });
   });
   describe("length", () => {
-    it("should return the length of a given line segment", () => {
+    it("should validate the length when the value of coordinates is positive", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
       const actualValue = line.length;
       const expectedValue = 0;
       assert.strictEqual(actualValue, expectedValue);
+    });
+    it("should validate the length when the value of coordinates is positive and length value is perfect square", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 9 });
+      const actualValue = line.length;
+      const expectedValue = 9;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+    it("should validate the length when the value of coordinates is negative", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: -9 });
+      const actualValue = line.length;
+      const expectedValue = 9;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+    it("should validate floating value of length of given line segment", () => {
+      const line = new Line({ x: 2, y: 0 }, { x: 0, y: 2 });
+      const actualValue = line.length;
+      const expectedValue = 2.5;
+      assert.closeTo(actualValue, expectedValue, 0.5);
     });
   });
 });
