@@ -48,6 +48,15 @@ class Line {
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return this.slope * x + yIntercept;
   }
+  hasPoint(point) {
+    const isXWithinRange = isWithinRange([this.endA.x, this.endB.x], point.x);
+    const isYWithinRange = isWithinRange([this.endA.y, this.endB.y], point.y);
+    if (isXWithinRange && isYWithinRange) {
+      const slopeOfPoint = (this.endA.y - point.y) / (this.endA.x - point.x);
+      return this.slope == slopeOfPoint;
+    }
+    return false;
+  }
 }
 
 module.exports.Line = Line;

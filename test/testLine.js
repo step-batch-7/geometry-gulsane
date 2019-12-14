@@ -149,4 +149,16 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+  describe("hasPoint", () => {
+    it("should not validate if point is out of the range of line segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
+      const actual = line.hasPoint({ x: 14, y: 0 });
+      assert.isNotOk(actual);
+    });
+    it("should validate if point is within range of the range of line segment and collinear", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
+      const actual = line.hasPoint({ x: 5, y: 0 });
+      assert.isOk(actual);
+    });
+  });
 });
