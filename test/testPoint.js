@@ -11,7 +11,7 @@ describe("Point", () => {
     });
   });
   describe("visit", () => {
-    it("should return the parameter to the reference of function", () => {
+    it("should pass the parameter to the reference of function", () => {
       const point = new Point(3, 4);
       const actual = point.visit((x, y) => x * y);
       const expected = 12;
@@ -22,22 +22,28 @@ describe("Point", () => {
     it("should validate the point which have same reference", () => {
       const point1 = new Point(1, 2);
       const actual = point1.isEqualTo(point1);
-      const expected = true;
-      assert.strictEqual(actual, expected);
+      assert.isOk(actual);
     });
     it("should validate the point which have same fields value", () => {
       const point1 = new Point(1, 2);
       const point2 = new Point(1, 2);
       const actual = point1.isEqualTo(point2);
-      const expected = true;
-      assert.strictEqual(actual, expected);
+      assert.isOk(actual);
     });
     it("should not validate the point which same different fields value", () => {
       const point1 = new Point(1, 2);
       const point2 = new Point(1, 8);
       const actual = point1.isEqualTo(point2);
-      const expected = false;
-      assert.strictEqual(actual, expected);
+
+      assert.isOk(!actual);
+    });
+  });
+  describe("clone", () => {
+    it("should give a copy of point", () => {
+      const point1 = new Point(1, 2);
+      const point2 = point1.clone();
+      const actual = point1.isEqualTo(point2);
+      assert.isOk(actual);
     });
   });
 });
