@@ -9,6 +9,9 @@ class Point {
   visit(fn) {
     return fn(this.x, this.y);
   }
+  isEqualTo(point) {
+    if (this === point) return true;
+  }
 }
 
 module.exports.Point = Point;

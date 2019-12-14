@@ -18,4 +18,12 @@ describe("Point", () => {
       assert.strictEqual(actual, expected);
     });
   });
+  describe("isEqualTo", () => {
+    it("should validate the point which have same reference", () => {
+      const point1 = new Point(1, 2);
+      const actual = point1.isEqualTo(point1);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
