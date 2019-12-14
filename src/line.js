@@ -15,7 +15,7 @@ class Line {
   toString() {
     return `line:(${this.endA.x},${this.endA.y}),(${this.endB.x},${this.endB.y})`;
   }
-  isEqual(otherLine) {
+  isEqualTo(otherLine) {
     if (this === otherLine) return true;
     if (!(otherLine instanceof Line)) {
       return false;
