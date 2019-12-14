@@ -25,5 +25,19 @@ describe("Point", () => {
       const expected = true;
       assert.strictEqual(actual, expected);
     });
+    it("should validate the point which have same fields value", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 2);
+      const actual = point1.isEqualTo(point2);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+    it("should not validate the point which same different fields value", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 8);
+      const actual = point1.isEqualTo(point2);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
   });
 });

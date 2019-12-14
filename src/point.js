@@ -11,6 +11,7 @@ class Point {
   }
   isEqualTo(point) {
     if (this === point) return true;
+    return this.x == point.x && this.y == point.y;
   }
 }
 
