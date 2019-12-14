@@ -1,7 +1,11 @@
 const arePointsEqual = function(point1, point2) {
   return point1.x == point2.x && point1.y == point2.y;
 };
-const findYIntercept = function(point) {};
+
+const isWithinRange = function(range, value) {
+  const [start, end] = range.sort();
+  return (start <= value && value <= end) || (end <= value && value <= start);
+};
 
 class Line {
   constructor(endA, endB) {
@@ -35,26 +39,12 @@ class Line {
     return dy / dx;
   }
   findX(y) {
-    if (
-      !(
-        (this.endA.y <= y && y <= this.endB.y) ||
-        (this.endB.y <= y && y <= this.endA.y)
-      )
-    ) {
-      return NaN;
-    }
+    if (!isWithinRange([this.endA.y, this.endB.y], y)) return NaN;
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return (y - yIntercept) / this.slope;
   }
   findY(x) {
-    if (
-      !(
-        (this.endA.x <= x && x <= this.endB.x) ||
-        (this.endB.x <= x && x <= this.endA.x)
-      )
-    ) {
-      return NaN;
-    }
+    if (!isWithinRange([this.endA.x, this.endB.x], x)) return NaN;
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return this.slope * x + yIntercept;
   }
