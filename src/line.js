@@ -46,6 +46,18 @@ class Line {
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return (y - yIntercept) / this.slope;
   }
+  findY(x) {
+    if (
+      !(
+        (this.endA.x <= x && x <= this.endB.x) ||
+        (this.endB.x <= x && x <= this.endA.x)
+      )
+    ) {
+      return NaN;
+    }
+    const yIntercept = this.endA.y - this.endA.x / this.slope;
+    return this.slope * x + yIntercept;
+  }
 }
 
 module.exports.Line = Line;

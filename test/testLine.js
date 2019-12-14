@@ -135,4 +135,18 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+  describe("findY", () => {
+    it("should return y for the given value of x if x is within the range of line segment", () => {
+      const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
+      const actual = line.findY(6);
+      const expected = 2;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should return y for the given value of x if x is not within the range of line segment", () => {
+      const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
+      const actual = line.findY(10);
+      const expected = NaN;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
