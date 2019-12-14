@@ -21,14 +21,9 @@ class Line {
     );
   }
   get length() {
-    const differenceOfAbscissas = this.endA.x - this.endB.x;
-    const differenceOfOrdinates = this.endA.y - this.endB.y;
-    const squareOfDifferenceOfAbscissa = differenceOfAbscissas ** 2;
-    const squareOfDifferenceOfOrdinates = differenceOfOrdinates ** 2;
-    const distance = Math.sqrt(
-      squareOfDifferenceOfAbscissa + squareOfDifferenceOfOrdinates
-    );
-    return distance;
+    const dx = this.endA.x - this.endB.x;
+    const dy = this.endA.y - this.endB.y;
+    return Math.hypot(dx, dy);
   }
   isParallelTo(otherLine) {
     if (otherLine instanceof Line) {
