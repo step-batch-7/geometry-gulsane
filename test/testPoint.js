@@ -10,4 +10,12 @@ describe("Point", () => {
       assert.strictEqual(actual, expected);
     });
   });
+  describe("visit", () => {
+    it("should return the parameter to the reference of function", () => {
+      const point = new Point(3, 4);
+      const actual = point.visit((x, y) => x * y);
+      const expected = 12;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
