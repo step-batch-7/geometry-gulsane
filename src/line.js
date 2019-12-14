@@ -26,15 +26,12 @@ class Line {
     return Math.hypot(dx, dy);
   }
   isParallelTo(otherLine) {
-    if (otherLine instanceof Line) {
-      return this.slope === otherLine.slope;
-    }
-    return false;
+    return otherLine instanceof Line && this.slope == otherLine.slope;
   }
   get slope() {
-    const differenceOfAbscissas = this.endA.x - this.endB.x;
-    const differenceOfOrdinates = this.endA.y - this.endB.y;
-    return differenceOfOrdinates / differenceOfAbscissas;
+    const dx = this.endA.x - this.endB.x;
+    const dy = this.endA.y - this.endB.y;
+    return dy / dx;
   }
 }
 
