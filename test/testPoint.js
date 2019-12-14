@@ -35,7 +35,7 @@ describe("Point", () => {
       const point2 = new Point(1, 8);
       const actual = point1.isEqualTo(point2);
 
-      assert.isOk(!actual);
+      assert.isNotOk(actual);
     });
   });
   describe("clone", () => {

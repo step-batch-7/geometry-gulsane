@@ -57,6 +57,14 @@ class Line {
     }
     return false;
   }
+  split() {
+    const middleXCoordinate = (this.endA.x + this.endB.x) / 2;
+    const middleYCoordinate = (this.endA.y + this.endB.y) / 2;
+    const middlePoint = { x: middleXCoordinate, y: middleYCoordinate };
+    const firstPart = new Line(this.endA, middlePoint);
+    const secondPart = new Line(middlePoint, this.endB);
+    return [firstPart, secondPart];
+  }
 }
 
 module.exports.Line = Line;
