@@ -121,4 +121,12 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+  describe("findX", () => {
+    it("should return x for the given value of y on te line", () => {
+      const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
+      const actual = line.findX(0);
+      const expected = 4;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
