@@ -35,6 +35,14 @@ class Line {
     return dy / dx;
   }
   findX(y) {
+    if (
+      !(
+        (this.endA.y <= y && y <= this.endB.y) ||
+        (this.endB.y <= y && y <= this.endA.y)
+      )
+    ) {
+      return NaN;
+    }
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return (y - yIntercept) / this.slope;
   }

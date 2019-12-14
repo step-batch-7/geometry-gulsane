@@ -122,11 +122,17 @@ describe("Line", () => {
     });
   });
   describe("findX", () => {
-    it("should return x for the given value of y on te line", () => {
+    it("should return x for the given value of y if y is within the range of line segment", () => {
+      const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
+      const actual = line.findX(3);
+      const expected = 7;
+      assert.strictEqual(actual, expected);
+    });
+    it("should return Nan for the given value of y if y is not within the range of line segment", () => {
       const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
       const actual = line.findX(0);
-      const expected = 4;
-      assert.strictEqual(actual, expected);
+      const expected = NaN;
+      assert.deepStrictEqual(actual, expected);
     });
   });
 });
