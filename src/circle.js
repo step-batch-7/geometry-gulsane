@@ -15,8 +15,10 @@ class Circle {
     );
   }
   get area() {
-    const area = (22 / 7) * this.radius ** 2;
-    return area;
+    return (22 / 7) * this.radius ** 2;
+  }
+  get perimeter() {
+    return ((2 * 22) / 7) * this.radius;
   }
 }
 

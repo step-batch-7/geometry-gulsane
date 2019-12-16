@@ -61,4 +61,11 @@ describe("Circle", () => {
       assert.strictEqual(actual, 0);
     });
   });
+  describe("perimeter", () => {
+    it("should return the perimeter of the circle", () => {
+      const circle = new Circle(new Point(9, 8), 7);
+      const actual = circle.perimeter;
+      assert.strictEqual(actual, 44);
+    });
+  });
 });
