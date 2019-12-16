@@ -18,11 +18,17 @@ describe("Point", () => {
       assert.strictEqual(actual, expected);
     });
   });
-  describe("isEqualToTo", () => {
+  describe("isEqualTo", () => {
     it("should validate the point which have same reference", () => {
       const point1 = new Point(1, 2);
       const actual = point1.isEqualTo(point1);
       assert.isOk(actual);
+    });
+    it("should invalidate the point which have not same instance", () => {
+      const point1 = new Point(2, 3);
+      const point2 = { x: 2, y: 3 };
+      const actual = point1.isEqualTo(point2);
+      assert.isNotOk(actual);
     });
     it("should validate the point which have same fields value", () => {
       const point1 = new Point(1, 2);
