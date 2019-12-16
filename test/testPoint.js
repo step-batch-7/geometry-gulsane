@@ -46,4 +46,23 @@ describe("Point", () => {
       assert.isOk(actual);
     });
   });
+  describe("findDistanceTo", () => {
+    it("should return NaN if points have not same instance", () => {
+      const point1 = new Point(1, 2);
+      const point2 = { x: 3, y: 7 };
+      const actual = point1.findDistanceTo(point2);
+      assert.isNaN(actual);
+    });
+    it("should return 0 is reference of both the points is same", () => {
+      const point1 = new Point(1, 2);
+      const actual = point1.findDistanceTo(point1);
+      assert.strictEqual(actual, 0);
+    });
+    it("should return the distance between two points if instance of both lines is same", () => {
+      const point1 = new Point(0, 0);
+      const point2 = new Point(10, 0);
+      const actual = point1.findDistanceTo(point2);
+      assert.strictEqual(actual, 10);
+    });
+  });
 });
