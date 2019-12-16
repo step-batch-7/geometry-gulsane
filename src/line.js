@@ -4,7 +4,7 @@ const arePointsEqual = function(point1, point2) {
 
 const isWithinRange = function(range, value) {
   const [start, end] = range.sort();
-  return (start <= value && value <= end) || (end <= value && value <= start);
+  return start <= value && end >= value;
 };
 
 class Line {
