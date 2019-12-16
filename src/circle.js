@@ -14,6 +14,10 @@ class Circle {
       this.centre.isEqualTo(otherCircle.centre)
     );
   }
+  get area() {
+    const area = (22 / 7) * this.radius ** 2;
+    return area;
+  }
 }
 
 module.exports.Circle = Circle;

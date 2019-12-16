@@ -44,4 +44,21 @@ describe("Circle", () => {
       assert.isNotOk(actual);
     });
   });
+  describe("area", () => {
+    it("should give area of the circle", () => {
+      const circle = new Circle(new Point(0, 0), 7);
+      const actual = circle.area;
+      assert.strictEqual(actual, 154);
+    });
+    it("should validate the floating numbers", () => {
+      const circle = new Circle(new Point(2, 6), 1);
+      const actual = circle.area;
+      assert.approximately(actual, 3, 0.5);
+    });
+    it("should return the area 0 when the radius is zero", () => {
+      const circle = new Circle(new Point(2, 6), 0);
+      const actual = circle.area;
+      assert.strictEqual(actual, 0);
+    });
+  });
 });
