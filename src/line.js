@@ -17,12 +17,12 @@ const arePointsColinear = function(point1, point2, point3) {
 };
 
 class Line {
-  constructor(endA, endB) {
-    this.endA = { x: endA.x, y: endA.y };
-    this.endB = { x: endB.x, y: endB.y };
+  constructor(start, end) {
+    this.start = { x: start.x, y: start.y };
+    this.end = { x: end.x, y: end.y };
   }
   toString() {
-    return `line:(${this.endA.x},${this.endA.y}),(${this.endB.x},${this.endB.y})`;
+    return `line:(${this.start.x},${this.start.y}),(${this.end.x},${this.end.y})`;
   }
   isEqualTo(otherLine) {
     if (this === otherLine) return true;
@@ -30,56 +30,56 @@ class Line {
       return false;
     }
     return (
-      arePointsEqual(this.endA, otherLine.endA) &&
-      arePointsEqual(this.endB, otherLine.endB)
+      arePointsEqual(this.start, otherLine.start) &&
+      arePointsEqual(this.end, otherLine.end)
     );
   }
   get length() {
-    const dx = this.endA.x - this.endB.x;
-    const dy = this.endA.y - this.endB.y;
+    const dx = this.start.x - this.end.x;
+    const dy = this.start.y - this.end.y;
     return Math.hypot(dx, dy);
   }
   isParallelTo(otherLine) {
     return (
       otherLine instanceof Line &&
       this.slope == otherLine.slope &&
-      !arePointsColinear(this.endA, this.endB, otherLine.endA)
+      !arePointsColinear(this.start, this.end, otherLine.start)
     );
   }
   get slope() {
-    const dx = this.endA.x - this.endB.x;
-    const dy = this.endA.y - this.endB.y;
+    const dx = this.start.x - this.end.x;
+    const dy = this.start.y - this.end.y;
     return dy / dx;
   }
   findX(y) {
-    if (!isWithinRange([this.endA.y, this.endB.y], y)) return NaN;
-    if (this.endA.y == this.endB.y) return this.endA.x;
-    const yIntercept = this.endA.y - this.endA.x / this.slope;
+    if (!isWithinRange([this.start.y, this.end.y], y)) return NaN;
+    if (this.start.y == this.end.y) return this.start.x;
+    const yIntercept = this.start.y - this.start.x / this.slope;
     return (y - yIntercept) / this.slope;
   }
   findY(x) {
-    if (!isWithinRange([this.endA.x, this.endB.x], x)) return NaN;
-    if (this.endA.x == this.endB.x) return this.endA.y;
-    const yIntercept = this.endA.y - this.endA.x / this.slope;
+    if (!isWithinRange([this.start.x, this.end.x], x)) return NaN;
+    if (this.start.x == this.end.x) return this.start.y;
+    const yIntercept = this.start.y - this.start.x / this.slope;
     return this.slope * x + yIntercept;
   }
   hasPoint(point) {
-    if (!point instanceof Point) return false;
-    const isXWithinRange = isWithinRange([this.endA.x, this.endB.x], point.x);
-    const isYWithinRange = isWithinRange([this.endA.y, this.endB.y], point.y);
+    if (!(point instanceof Point)) return false;
+    const isXWithinRange = isWithinRange([this.start.x, this.end.x], point.x);
+    const isYWithinRange = isWithinRange([this.start.y, this.end.y], point.y);
     if (isXWithinRange && isYWithinRange) {
-      const slopeOfPoint = (this.endA.y - point.y) / (this.endA.x - point.x);
+      const slopeOfPoint = (this.start.y - point.y) / (this.start.x - point.x);
       return this.slope == slopeOfPoint;
     }
     return false;
   }
 
   split() {
-    const middleXCoordinate = (this.endA.x + this.endB.x) / 2;
-    const middleYCoordinate = (this.endA.y + this.endB.y) / 2;
+    const middleXCoordinate = (this.start.x + this.end.x) / 2;
+    const middleYCoordinate = (this.start.y + this.end.y) / 2;
     const middlePoint = { x: middleXCoordinate, y: middleYCoordinate };
-    const firstPart = new Line(this.endA, middlePoint);
-    const secondPart = new Line(middlePoint, this.endB);
+    const firstPart = new Line(this.start, middlePoint);
+    const secondPart = new Line(middlePoint, this.end);
     return [firstPart, secondPart];
   }
 }
