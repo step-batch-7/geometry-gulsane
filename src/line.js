@@ -38,9 +38,9 @@ class Line {
     );
   }
   get length() {
-    const dx = this.start.x - this.end.x;
-    const dy = this.start.y - this.end.y;
-    return Math.hypot(dx, dy);
+    const point1 = new Point(this.start.x, this.start.y);
+    const point2 = new Point(this.end.x, this.end.y);
+    return point1.findDistanceTo(point2);
   }
   isParallelTo(otherLine) {
     return (
