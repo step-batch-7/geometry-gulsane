@@ -16,6 +16,13 @@ const arePointsColinear = function(point1, point2, point3) {
   return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
 };
 
+const getPoint = function(point1, point2, ratio) {
+  if (ratio < 0 || ratio > 1) return null;
+  const x = (1 - ratio) * point1.x + ratio * point2.x;
+  const y = (1 - ratio) * point1.y + ratio * point2.y;
+  return new Point(x, y);
+};
+
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -81,6 +88,12 @@ class Line {
     const firstPart = new Line(this.start, middlePoint);
     const secondPart = new Line(middlePoint, this.end);
     return [firstPart, secondPart];
+  }
+  findPointFromStart(distance) {
+    const ratio = distance / this.length;
+    const [point1, point2] = [this.start, this.end];
+    const point = getPoint(point1, point2, ratio);
+    return point;
   }
 }
 
