@@ -1,8 +1,5 @@
+"use strict";
 const Point = require("./point").Point;
-
-const arePointsEqual = function(point1, point2) {
-  return point1.x == point2.x && point1.y == point2.y;
-};
 
 const isWithinRange = function(range, value) {
   const [start, end] = range.sort();
@@ -10,9 +7,9 @@ const isWithinRange = function(range, value) {
 };
 
 const arePointsColinear = function(point1, point2, point3) {
-  [x1, y1] = [point1.x, point1.y];
-  [x2, y2] = [point2.x, point2.y];
-  [x3, y3] = [point3.x, point3.y];
+  const [x1, y1] = [point1.x, point1.y];
+  const [x2, y2] = [point2.x, point2.y];
+  const [x3, y3] = [point3.x, point3.y];
   return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
 };
 
@@ -25,11 +22,11 @@ const getPoint = function(point1, point2, ratio) {
 
 class Line {
   constructor(start, end) {
-    this.start = { x: start.x, y: start.y };
-    this.end = { x: end.x, y: end.y };
+    this.start = start;
+    this.end = end;
   }
   toString() {
-    return `line:(${this.start.x},${this.start.y}),(${this.end.x},${this.end.y})`;
+    return `[Line (${this.start.x},${this.start.y}) to (${this.end.x},${this.end.y})]`;
   }
   isEqualTo(otherLine) {
     if (this === otherLine) return true;
@@ -37,8 +34,7 @@ class Line {
       return false;
     }
     return (
-      arePointsEqual(this.start, otherLine.start) &&
-      arePointsEqual(this.end, otherLine.end)
+      this.start.isEqualTo(otherLine.start) && this.end.isEqualTo(otherLine.end)
     );
   }
   get length() {
@@ -84,9 +80,14 @@ class Line {
   split() {
     const middleXCoordinate = (this.start.x + this.end.x) / 2;
     const middleYCoordinate = (this.start.y + this.end.y) / 2;
-    const middlePoint = { x: middleXCoordinate, y: middleYCoordinate };
-    const firstPart = new Line(this.start, middlePoint);
-    const secondPart = new Line(middlePoint, this.end);
+    const firstPart = new Line(
+      new Point(this.start.x, this.start.y),
+      new Point(middleXCoordinate, middleYCoordinate)
+    );
+    const secondPart = new Line(
+      new Point(middleXCoordinate, middleYCoordinate),
+      new Point(this.end.x, this.end.y)
+    );
     return [firstPart, secondPart];
   }
   findPointFromStart(distance) {
