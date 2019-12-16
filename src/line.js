@@ -81,12 +81,12 @@ class Line {
     const middleXCoordinate = (this.start.x + this.end.x) / 2;
     const middleYCoordinate = (this.start.y + this.end.y) / 2;
     const firstPart = new Line(
-      new Point(this.start.x, this.start.y),
+      this.start,
       new Point(middleXCoordinate, middleYCoordinate)
     );
     const secondPart = new Line(
       new Point(middleXCoordinate, middleYCoordinate),
-      new Point(this.end.x, this.end.y)
+      this.end
     );
     return [firstPart, secondPart];
   }
