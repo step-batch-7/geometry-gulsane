@@ -1,5 +1,3 @@
-const Line = require("./line").Line;
-
 class Point {
   constructor(x, y) {
     this.x = x;
