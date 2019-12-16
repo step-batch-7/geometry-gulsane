@@ -71,13 +71,14 @@ describe("Line", () => {
       const actual = line1.isParallelTo(line2);
       assert.isOk(actual);
     });
-    it("should validate if both the lines are not instance of same class(Line)", () => {
+
+    it("should invalidate if both the lines are not instance of same class(Line)", () => {
       const line1 = new Line({ x: 4, y: 6 }, { x: 2, y: 4 });
       const line2 = { endA: { x: 0, y: 0 }, endB: { x: 0, y: 0 } };
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);
     });
-    it("should validate if both the lines are not parallel but have same instance", () => {
+    it("should invalidate if both the lines are not parallel but have same instance", () => {
       const line1 = new Line({ x: 0, y: 9 }, { x: 0, y: 2 });
       const line2 = new Line({ x: 9, y: 12 }, { x: 6, y: 9 });
       const actual = line1.isParallelTo(line2);
