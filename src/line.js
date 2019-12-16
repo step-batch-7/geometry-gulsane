@@ -95,6 +95,12 @@ class Line {
     const point = getPoint(point1, point2, ratio);
     return point;
   }
+  findPointFromEnd(distance) {
+    const ratio = distance / this.length;
+    const [point2, point1] = [this.start, this.end];
+    const point = getPoint(point1, point2, ratio);
+    return point;
+  }
 }
 
 module.exports.Line = Line;

@@ -216,16 +216,43 @@ describe("Line", () => {
     });
   });
   describe("findPointFromStart", () => {
-    it("should return NaN if the given distance is greater than length of line", () => {
+    it("should return null if the given distance is greater than length of line", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 2, y: 0 });
       const actual = line.findPointFromStart(4);
       const expected = null;
       assert.deepStrictEqual(actual, expected);
     });
+    it("should return null if the given distance is smaller than the length of line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 2, y: 0 });
+      const actual = line.findPointFromStart(-2);
+      const expected = null;
+      assert.deepStrictEqual(actual, expected);
+    });
     it("should return the point after given distance on the line", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
-      const point1 = line.findPointFromStart(5);
-      const point2 = new Point(5, 0);
+      const point1 = line.findPointFromStart(2);
+      const point2 = new Point(2, 0);
+      const actual = point1.isEqualTo(point2);
+      assert.isOk(actual);
+    });
+  });
+  describe("findPointFromEnd", () => {
+    it("should return null if the given distance is greater than length of line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 2, y: 0 });
+      const actual = line.findPointFromEnd(4);
+      const expected = null;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should return null if the given distance is smaller than the length of line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 2, y: 0 });
+      const actual = line.findPointFromEnd(-2);
+      const expected = null;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should return the point after given distance on the line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
+      const point1 = line.findPointFromEnd(2);
+      const point2 = new Point(8, 0);
       const actual = point1.isEqualTo(point2);
       assert.isOk(actual);
     });
