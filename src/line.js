@@ -40,6 +40,7 @@ class Line {
   }
   findX(y) {
     if (!isWithinRange([this.endA.y, this.endB.y], y)) return NaN;
+    if (this.slope == 0) return this.endA.x;
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return (y - yIntercept) / this.slope;
   }
@@ -57,6 +58,7 @@ class Line {
     }
     return false;
   }
+
   split() {
     const middleXCoordinate = (this.endA.x + this.endB.x) / 2;
     const middleYCoordinate = (this.endA.y + this.endB.y) / 2;

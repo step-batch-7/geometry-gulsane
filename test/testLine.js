@@ -116,6 +116,12 @@ describe("Line", () => {
     });
   });
   describe("findX", () => {
+    it("should return x of first point for the given value of y if slope of line is 0", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 8, y: 0 });
+      const actual = line.findX(0);
+      const expected = 0;
+      assert.strictEqual(actual, expected);
+    });
     it("should return x for the given value of y if y is within the range of line segment", () => {
       const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
       const actual = line.findX(3);
@@ -147,7 +153,7 @@ describe("Line", () => {
       const actual = line.hasPoint({ x: 14, y: 0 });
       assert.isNotOk(actual);
     });
-    it("should validate if point is within range of the range of line segment and collinear", () => {
+    it("should validate if point is within range of the line segment and collinear", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
       const actual = line.hasPoint({ x: 5, y: 0 });
       assert.isOk(actual);
