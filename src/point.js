@@ -26,6 +26,9 @@ class Point {
     const dy = this.y - otherPoint.y;
     return Math.hypot(dx, dy);
   }
+  isOn(shape) {
+    return shape.hasPoint(this);
+  }
 }
 
 module.exports.Point = Point;

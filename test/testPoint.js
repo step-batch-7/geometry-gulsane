@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Point = require("../src/point").Point;
+const Line = require("../src/line").Line;
 
 describe("Point", () => {
   describe("toString", () => {
@@ -69,6 +70,20 @@ describe("Point", () => {
       const point2 = new Point(10, 0);
       const actual = point1.findDistanceTo(point2);
       assert.strictEqual(actual, 10);
+    });
+  });
+  describe("isOn", () => {
+    it("should invalidate the point if it is not present on the line", () => {
+      const point = new Point(0, 8);
+      const line = new Line(new Point(0, 0), new Point(10, 0));
+      const actual = point.isOn(line);
+      assert.isNotOk(actual);
+    });
+    it("should validate the point if it is present on the line", () => {
+      const point = new Point(8, 0);
+      const line = new Line(new Point(0, 0), new Point(10, 0));
+      const actual = point.isOn(line);
+      assert.isOk(actual);
     });
   });
 });
