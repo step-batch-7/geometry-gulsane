@@ -1,10 +1,12 @@
+const Point = require("./point").Point;
+
 const arePointsEqual = function(point1, point2) {
   return point1.x == point2.x && point1.y == point2.y;
 };
 
 const isWithinRange = function(range, value) {
   const [start, end] = range.sort();
-  return start <= value && end >= value;
+  return value >= start && value <= end;
 };
 
 class Line {
@@ -51,6 +53,7 @@ class Line {
     return this.slope * x + yIntercept;
   }
   hasPoint(point) {
+    if (!point instanceof Point) return false;
     const isXWithinRange = isWithinRange([this.endA.x, this.endB.x], point.x);
     const isYWithinRange = isWithinRange([this.endA.y, this.endB.y], point.y);
     if (isXWithinRange && isYWithinRange) {

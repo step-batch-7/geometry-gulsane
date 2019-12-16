@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Line = require("../src/line.js").Line;
+const Point = require("../src/point").Point;
 
 describe("Line", () => {
   describe("toString", () => {
@@ -164,14 +165,21 @@ describe("Line", () => {
     });
   });
   describe("hasPoint", () => {
+    it("should not validate if point is not instanceof class Point", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
+      const actual = line.hasPoint({ m: 2, n: 7 });
+      assert.isNotOk(actual);
+    });
     it("should not validate if point is out of the range of line segment", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
-      const actual = line.hasPoint({ x: 14, y: 0 });
+      const point = new Point(14, 0);
+      const actual = line.hasPoint(point);
       assert.isNotOk(actual);
     });
     it("should validate if point is within range of the line segment and collinear", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
-      const actual = line.hasPoint({ x: 5, y: 0 });
+      const point = new Point(5, 0);
+      const actual = line.hasPoint(point);
       assert.isOk(actual);
     });
   });
