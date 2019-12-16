@@ -71,7 +71,12 @@ describe("Line", () => {
       const actual = line1.isParallelTo(line2);
       assert.isOk(actual);
     });
-
+    it("should invalidate if both the lines are coincident", () => {
+      const line1 = new Line({ x: 4, y: 6 }, { x: 2, y: 4 });
+      const line2 = new Line({ x: 4, y: 6 }, { x: 2, y: 4 });
+      const actual = line1.isParallelTo(line2);
+      assert.isNotOk(actual);
+    });
     it("should invalidate if both the lines are not instance of same class(Line)", () => {
       const line1 = new Line({ x: 4, y: 6 }, { x: 2, y: 4 });
       const line2 = { endA: { x: 0, y: 0 }, endB: { x: 0, y: 0 } };
