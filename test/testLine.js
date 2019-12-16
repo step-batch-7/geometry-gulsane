@@ -116,11 +116,16 @@ describe("Line", () => {
     });
   });
   describe("findX", () => {
-    it("should return x of first point for the given value of y if slope of line is 0", () => {
-      const line = new Line({ x: 0, y: 0 }, { x: 8, y: 0 });
-      const actual = line.findX(0);
-      const expected = 0;
+    it("should return x for given y for a horizontal line if y is in range", () => {
+      const line = new Line({ x: -2, y: 4 }, { x: 8, y: 4 });
+      const actual = line.findX(4);
+      const expected = -2;
       assert.strictEqual(actual, expected);
+    });
+    it("should return NaN for given y for a horizontal line if y is not in range", () => {
+      const line = new Line({ x: -2, y: 4 }, { x: 8, y: 4 });
+      const actual = line.findX(8);
+      assert.isNaN(actual);
     });
     it("should return x for the given value of y if y is within the range of line segment", () => {
       const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
@@ -135,6 +140,17 @@ describe("Line", () => {
     });
   });
   describe("findY", () => {
+    it("should return y of first point for vertical line if given x is in range of line", () => {
+      const line = new Line({ x: 3, y: 4 }, { x: 3, y: -8 });
+      const actual = line.findY(3);
+      const expected = 4;
+      assert.strictEqual(actual, expected);
+    });
+    it("should return NaN for vertical line if given x is not in range of line", () => {
+      const line = new Line({ x: 3, y: 4 }, { x: 3, y: -8 });
+      const actual = line.findY(7);
+      assert.isNaN(actual);
+    });
     it("should return y for the given value of x if x is within the range of line segment", () => {
       const line = new Line({ x: 8, y: 4 }, { x: 5, y: 1 });
       const actual = line.findY(6);

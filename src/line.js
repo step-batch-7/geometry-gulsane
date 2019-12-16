@@ -40,12 +40,13 @@ class Line {
   }
   findX(y) {
     if (!isWithinRange([this.endA.y, this.endB.y], y)) return NaN;
-    if (this.slope == 0) return this.endA.x;
+    if (this.endA.y == this.endB.y) return this.endA.x;
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return (y - yIntercept) / this.slope;
   }
   findY(x) {
     if (!isWithinRange([this.endA.x, this.endB.x], x)) return NaN;
+    if (this.endA.x == this.endB.x) return this.endA.y;
     const yIntercept = this.endA.y - this.endA.x / this.slope;
     return this.slope * x + yIntercept;
   }
