@@ -68,4 +68,21 @@ describe("Circle", () => {
       assert.strictEqual(actual, 44);
     });
   });
+  describe("hasPoint", () => {
+    it("should invalidate the point if it not the instance of the class Point", () => {
+      const circle = new Circle(new Point(0, 0), 7);
+      const actual = circle.hasPoint({ x: 0, y: 7 });
+      assert.isNotOk(actual);
+    });
+    it("should validate the point if it is on the circle", () => {
+      const circle = new Circle(new Point(0, 0), 7);
+      const actual = circle.hasPoint(new Point(7, 0));
+      assert.isOk(actual);
+    });
+    it("should invalidate the point if it is not on the circle", () => {
+      const circle = new Circle(new Point(0, 0), 7);
+      const actual = circle.hasPoint(new Point(5, 0));
+      assert.isNotOk(actual);
+    });
+  });
 });

@@ -1,3 +1,5 @@
+const Point = require("./point").Point;
+
 class Circle {
   constructor(centre, radius) {
     this.centre = centre;
@@ -19,6 +21,10 @@ class Circle {
   }
   get perimeter() {
     return ((2 * 22) / 7) * this.radius;
+  }
+  hasPoint(otherPoint) {
+    if (!(otherPoint instanceof Point)) return false;
+    return this.centre.findDistanceTo(otherPoint) == this.radius;
   }
 }
 
