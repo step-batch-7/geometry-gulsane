@@ -59,5 +59,25 @@ describe("Rectangle", () => {
       const rectangle = new Rectangle({ x: 3, y: 3 }, { x: 3, y: 9 });
       assert.isOk(rectangle.isEqualTo(rectangle));
     });
+    it("should invalidate the rectangle if it is not the instance of it", () => {
+      const rectangle1 = new Rectangle({ x: 3, y: 3 }, { x: 3, y: 9 });
+      const rectangle2 = { vertexA: { x: 3, y: 3 }, vertexB: { x: 3, y: 9 } };
+      assert.isNotOk(rectangle1.isEqualTo(rectangle2));
+    });
+    it("should validate if coordinates of both diagonals are equal", () => {
+      const rectangle1 = new Rectangle({ x: 3, y: 3 }, { x: 3, y: 9 });
+      const rectangle2 = new Rectangle({ x: 3, y: 3 }, { x: 3, y: 9 });
+      assert.isOk(rectangle1.isEqualTo(rectangle2));
+    });
+    it("should validate if the coordinate of diagonal is equal to second diagonal", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      const rectangle2 = new Rectangle({ x: 0, y: 9 }, { x: 3, y: 0 });
+      assert.isOk(rectangle1.isEqualTo(rectangle2));
+    });
+    it("should validate the rectangle if diagonals are equal but coordinates are altered", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      const rectangle2 = new Rectangle({ x: 3, y: 9 }, { x: 0, y: 0 });
+      assert.isOk(rectangle1.isEqualTo(rectangle2));
+    });
   });
 });

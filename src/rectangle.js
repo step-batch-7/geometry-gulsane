@@ -1,21 +1,25 @@
 const Point = require("./point");
 const Line = require("./line");
 
+const getVertexBandD = function(vertexA, vertexC) {
+  return [new Point(vertexA.x, vertexC.y), new Point(vertexC.x, vertexA.y)];
+};
+
 class Rectangle {
-  constructor(topLeft, bottomRight) {
-    this.topLeft = new Point(topLeft.x, topLeft.y);
-    this.bottomRight = new Point(bottomRight.x, bottomRight.y);
+  constructor(vertexA, vertexC) {
+    this.vertexA = new Point(vertexA.x, vertexA.y);
+    this.vertexC = new Point(vertexC.x, vertexC.y);
   }
   toString() {
-    const topLeft = `(${this.topLeft.x},${this.topLeft.y})`;
-    const bottomRight = `(${this.bottomRight.x},${this.bottomRight.y})`;
-    return `[Rectangle ${topLeft} to ${bottomRight}]`;
+    const vertexA = `(${this.vertexA.x},${this.vertexA.y})`;
+    const vertexC = `(${this.vertexC.x},${this.vertexC.y})`;
+    return `[Rectangle ${vertexA} to ${vertexC}]`;
   }
   get length() {
-    return Math.abs(this.topLeft.x - this.bottomRight.x);
+    return Math.abs(this.vertexA.x - this.vertexC.x);
   }
   get width() {
-    return Math.abs(this.topLeft.y - this.bottomRight.y);
+    return Math.abs(this.vertexA.y - this.vertexC.y);
   }
   get area() {
     return this.length * this.width;
@@ -23,9 +27,17 @@ class Rectangle {
   get perimeter() {
     return 2 * (this.length + this.width);
   }
-  isEqualTo(otherRectangle) {
-    if (this === otherRectangle) return true;
-    const diagonal1 = new Line({ x: this.topLeft.x, y: this.topLeft.y }, {});
+  isEqualTo(shape) {
+    if (this === shape) return true;
+    if (!(shape instanceof Rectangle)) return false;
+    const [vertexB, vertexD] = getVertexBandD(this.vertexA, this.vertexC);
+    const diagonal1 = new Line(this.vertexA, this.vertexC);
+    const diagonal2 = new Line(vertexB, vertexD);
+    const diagonalToCompare = new Line(shape.vertexA, shape.vertexC);
+    return (
+      diagonal1.isEqualTo(diagonalToCompare) ||
+      diagonal2.isEqualTo(diagonalToCompare)
+    );
   }
 }
 
