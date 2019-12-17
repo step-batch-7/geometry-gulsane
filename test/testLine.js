@@ -5,38 +5,34 @@ const Point = require("../src/point").Point;
 describe("Line", () => {
   describe("toString", () => {
     it("should return string when toString method is called", () => {
-      const actual = new Line(new Point(1, 2), new Point(2, 3));
+      const actual = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
       const expected = "[Line (1,2) to (2,3)]";
       assert.deepStrictEqual(actual.toString(), expected);
     });
   });
   describe("isEqualTo", () => {
     it("should return true when the reference of both the lines are same", () => {
-      const start = new Point(0, 0);
-      const end = new Point(1, 1);
-      const line1 = new Line(start, end);
+      const line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
       const actual = line1.isEqualTo(line1);
       assert.isOk(actual);
     });
 
     it("should return true if instance and fields of both lines are equal", () => {
-      const line1 = new Line(new Point(0, 0), new Point(1, 1));
-      const line2 = new Line(new Point(0, 0), new Point(1, 1));
+      const line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
+      const line2 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
       const actual = line1.isEqualTo(line2);
       assert.isOk(actual);
     });
     it("should return false if instance of both lines are not equal", () => {
-      const line1 = new Line(new Point(0, 0), new Point(1, 1));
+      const line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
       const line2 = { endA: { x: 0, y: 0 }, endB: { x: 0, y: 0 } };
       const actual = line1.isEqualTo(line2);
-      const expected = false;
       assert.isNotOk(actual);
     });
     it("should return false if the fields of both the lines are not equal", () => {
-      const line1 = new Line(new Point(0, 0), new Point(1, 1));
-      const line2 = new Line(new Point(9, 4), new Point(1, 1));
+      const line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
+      const line2 = new Line({ x: 9, y: 4 }, { x: 1, y: 1 });
       const actual = line1.isEqualTo(line2);
-      const expected = false;
       assert.isNotOk(actual);
     });
   });
@@ -193,25 +189,25 @@ describe("Line", () => {
   });
   describe("split", () => {
     it("should return two lines of equal distance of horizontal line", () => {
-      const line = new Line(new Point(0, 0), new Point(10, 0));
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
       const actual = line.split();
-      const firstLine = new Line(new Point(0, 0), new Point(5, 0));
-      const secondLine = new Line(new Point(5, 0), new Point(10, 0));
+      const firstLine = new Line({ x: 0, y: 0 }, { x: 5, y: 0 });
+      const secondLine = new Line({ x: 5, y: 0 }, { x: 10, y: 0 });
       assert.isOk(actual[0].isEqualTo(firstLine));
       assert.isOk(actual[1].isEqualTo(secondLine));
     });
     it("should return two lines of equal distance of vertical line", () => {
-      const line = new Line(new Point(0, 0), new Point(10, 0));
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
       const actual = line.split();
-      const firstLine = new Line(new Point(0, 0), new Point(5, 0));
-      const secondLine = new Line(new Point(5, 0), new Point(10, 0));
+      const firstLine = new Line({ x: 0, y: 0 }, { x: 5, y: 0 });
+      const secondLine = new Line({ x: 5, y: 0 }, { x: 10, y: 0 });
       assert.isOk(actual[0].isEqualTo(firstLine));
       assert.isOk(actual[1].isEqualTo(secondLine));
     });
     it("should return two lines of equal distance with negative coordinates", function() {
-      const line = new Line(new Point(-4, 3), new Point(6, 8));
-      const firstLine = new Line(new Point(-4, 3), new Point(1, 5.5));
-      const secondLine = new Line(new Point(1, 5.5), new Point(6, 8));
+      const line = new Line({ x: -4, y: 3 }, { x: 6, y: 8 });
+      const firstLine = new Line({ x: -4, y: 3 }, { x: 1, y: 5.5 });
+      const secondLine = new Line({ x: 1, y: 5.5 }, { x: 6, y: 8 });
       const actual = line.split();
       assert.isOk(actual[0].isEqualTo(firstLine));
       assert.isOk(actual[1].isEqualTo(secondLine));

@@ -22,8 +22,8 @@ const getPoint = function(point1, point2, ratio) {
 
 class Line {
   constructor(start, end) {
-    this.start = start;
-    this.end = end;
+    this.start = new Point(start.x, start.y);
+    this.end = new Point(end.x, end.y);
   }
   toString() {
     return `[Line (${this.start.x},${this.start.y}) to (${this.end.x},${this.end.y})]`;

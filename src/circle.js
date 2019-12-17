@@ -2,7 +2,7 @@ const Point = require("./point").Point;
 
 class Circle {
   constructor(centre, radius) {
-    this.centre = centre;
+    this.centre = new Point(centre.x, centre.y);
     this.radius = radius;
   }
   toString() {
