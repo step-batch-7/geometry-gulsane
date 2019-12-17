@@ -52,7 +52,8 @@ class Line {
   get slope() {
     const dx = this.start.x - this.end.x;
     const dy = this.start.y - this.end.y;
-    return dy / dx;
+    const slope = dy / dx;
+    return slope == -Infinity ? Infinity : slope;
   }
   findX(y) {
     if (!isWithinRange([this.start.y, this.end.y], y)) return NaN;

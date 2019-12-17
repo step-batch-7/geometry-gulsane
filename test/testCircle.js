@@ -48,7 +48,7 @@ describe("Circle", () => {
     it("should give area of the circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 7);
       const actual = circle.area;
-      assert.strictEqual(actual, 154);
+      assert.approximately(circle.area, 154, 0.1);
     });
     it("should validate the floating numbers", () => {
       const circle = new Circle({ x: 2, y: 6 }, 1);

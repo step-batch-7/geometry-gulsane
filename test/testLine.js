@@ -119,6 +119,12 @@ describe("Line", () => {
       const expected = Infinity;
       assert.deepStrictEqual(actual, expected);
     });
+    it("should validate the slope value when it is infinite", () => {
+      const line = new Line({ x: 0, y: 3 }, { x: 0, y: 9 });
+      const actual = line.slope;
+      const expected = Infinity;
+      assert.deepStrictEqual(actual, expected);
+    });
   });
   describe("findX", () => {
     it("should return x for given y for a horizontal line if y is in range", () => {

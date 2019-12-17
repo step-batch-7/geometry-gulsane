@@ -17,7 +17,7 @@ class Circle {
     );
   }
   get area() {
-    return (22 / 7) * this.radius ** 2;
+    return Math.PI * this.radius * this.radius;
   }
   get perimeter() {
     return ((2 * 22) / 7) * this.radius;
