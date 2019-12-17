@@ -35,6 +35,12 @@ describe("Line", () => {
       const actual = line1.isEqualTo(line2);
       assert.isNotOk(actual);
     });
+    it("should validate the line if start and end points are altered", () => {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
+      const line2 = new Line({ x: 1, y: 1 }, { x: 0, y: 0 });
+      const actual = line1.isEqualTo(line2);
+      assert.isOk(actual);
+    });
   });
   describe("length", () => {
     it("should validate the length when the value of coordinates is positive", () => {

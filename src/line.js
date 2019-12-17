@@ -28,13 +28,14 @@ class Line {
   toString() {
     return `[Line (${this.start.x},${this.start.y}) to (${this.end.x},${this.end.y})]`;
   }
-  isEqualTo(otherLine) {
-    if (this === otherLine) return true;
-    if (!(otherLine instanceof Line)) {
+  isEqualTo(other) {
+    if (this === other) return true;
+    if (!(other instanceof Line)) {
       return false;
     }
     return (
-      this.start.isEqualTo(otherLine.start) && this.end.isEqualTo(otherLine.end)
+      (this.start.isEqualTo(other.start) && this.end.isEqualTo(other.end)) ||
+      (this.start.isEqualTo(other.end) && this.end.isEqualTo(other.start))
     );
   }
   get length() {
