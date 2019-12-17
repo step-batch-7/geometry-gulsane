@@ -10,4 +10,18 @@ describe("Rectangle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+  describe("area", () => {
+    it("should return area of the rectangle for positive coordinates", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 4 });
+      assert.strictEqual(rectangle.area, 16);
+    });
+    it("should return area of the rectangle for negative coordinates", () => {
+      const rectangle = new Rectangle({ x: -2, y: 3 }, { x: 3, y: -3 });
+      assert.strictEqual(rectangle.area, 30);
+    });
+    it("should return area of the rectangle 0 for same coordinates", () => {
+      const rectangle = new Rectangle({ x: -2, y: 3 }, { x: -2, y: 3 });
+      assert.strictEqual(rectangle.area, 0);
+    });
+  });
 });
