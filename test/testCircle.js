@@ -79,10 +79,29 @@ describe("Circle", () => {
       const actual = circle.hasPoint(new Point(0, 7));
       assert.isOk(actual);
     });
-    it("should invalidate the point if it is not on the circle", () => {
+    it("should invalidate the point if it is outside the circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 7);
       const actual = circle.hasPoint(new Point(9, 0));
       assert.isNotOk(actual);
+    });
+    it("should invalidate the point if it is inside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const actual = circle.hasPoint(new Point(4, 0));
+      assert.isNotOk(actual);
+    });
+  });
+  describe("moveTo", () => {
+    it("should move the circle to the given different point", () => {
+      const circle1 = new Circle({ x: 0, y: 0 }, 5);
+      const circle2 = new Circle({ x: 1, y: 1 }, 5);
+      const actual = circle1.moveTo({ x: 1, y: 1 });
+      assert.isOk(actual.isEqualTo(circle2));
+    });
+    it("should move the circle at the same point when given centre is same", () => {
+      const circle1 = new Circle({ x: 0, y: 0 }, 5);
+      const circle2 = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle1.moveTo({ x: 0, y: 0 });
+      assert.isOk(actual.isEqualTo(circle2));
     });
   });
 });

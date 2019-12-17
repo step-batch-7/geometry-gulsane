@@ -22,9 +22,12 @@ class Circle {
   get perimeter() {
     return ((2 * 22) / 7) * this.radius;
   }
-  hasPoint(otherPoint) {
-    if (!(otherPoint instanceof Point)) return false;
-    return this.centre.findDistanceTo(otherPoint) == this.radius;
+  hasPoint(point) {
+    if (!(point instanceof Point)) return false;
+    return this.centre.findDistanceTo(point) == this.radius;
+  }
+  moveTo(otherCentre) {
+    return new Circle(otherCentre, this.radius);
   }
 }
 
