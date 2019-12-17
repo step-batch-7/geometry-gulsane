@@ -120,5 +120,10 @@ describe("Circle", () => {
       const actual = circle.covers(new Point(0, 9));
       assert.isNotOk(actual);
     });
+    it("should invalidate the point if it is not instance of Point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.covers({ x: 0, y: 9 });
+      assert.isNotOk(actual);
+    });
   });
 });
