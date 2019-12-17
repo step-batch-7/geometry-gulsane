@@ -54,4 +54,10 @@ describe("Rectangle", () => {
       assert.strictEqual(rectangle.perimeter, 12);
     });
   });
+  describe("isEqualTo", () => {
+    it("should validate the rectangles if both has same reference", () => {
+      const rectangle = new Rectangle({ x: 3, y: 3 }, { x: 3, y: 9 });
+      assert.isOk(rectangle.isEqualTo(rectangle));
+    });
+  });
 });

@@ -1,4 +1,5 @@
 const Point = require("./point");
+const Line = require("./line");
 
 class Rectangle {
   constructor(topLeft, bottomRight) {
@@ -10,15 +11,21 @@ class Rectangle {
     const bottomRight = `(${this.bottomRight.x},${this.bottomRight.y})`;
     return `[Rectangle ${topLeft} to ${bottomRight}]`;
   }
+  get length() {
+    return Math.abs(this.topLeft.x - this.bottomRight.x);
+  }
+  get width() {
+    return Math.abs(this.topLeft.y - this.bottomRight.y);
+  }
   get area() {
-    const length = Math.abs(this.topLeft.x - this.bottomRight.x);
-    const width = Math.abs(this.topLeft.y - this.bottomRight.y);
-    return length * width;
+    return this.length * this.width;
   }
   get perimeter() {
-    const length = Math.abs(this.topLeft.x - this.bottomRight.x);
-    const width = Math.abs(this.topLeft.y - this.bottomRight.y);
-    return 2 * (length + width);
+    return 2 * (this.length + this.width);
+  }
+  isEqualTo(otherRectangle) {
+    if (this === otherRectangle) return true;
+    const diagonal1 = new Line({ x: this.topLeft.x, y: this.topLeft.y }, {});
   }
 }
 
