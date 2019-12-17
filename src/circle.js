@@ -1,4 +1,4 @@
-const Point = require("./point").Point;
+const Point = require("./point");
 
 class Circle {
   constructor(centre, radius) {
@@ -28,4 +28,4 @@ class Circle {
   }
 }
 
-module.exports.Circle = Circle;
+module.exports = Circle;

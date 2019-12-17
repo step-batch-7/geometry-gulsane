@@ -1,5 +1,5 @@
 "use strict";
-const Point = require("./point").Point;
+const Point = require("./point");
 
 const isWithinRange = function(range, value) {
   const [start, end] = range.sort();
@@ -105,4 +105,4 @@ class Line {
   }
 }
 
-module.exports.Line = Line;
+module.exports = Line;

@@ -1,6 +1,6 @@
 const assert = require("chai").assert;
-const Line = require("../src/line.js").Line;
-const Point = require("../src/point").Point;
+const Line = require("../src/line.js");
+const Point = require("../src/point");
 
 describe("Line", () => {
   describe("toString", () => {

@@ -1,8 +1,8 @@
 "use strict";
 
 const assert = require("chai").assert;
-const Circle = require("../src/circle").Circle;
-const Point = require("../src/point").Point;
+const Circle = require("../src/circle");
+const Point = require("../src/point");
 
 describe("Circle", () => {
   describe("toString", () => {
