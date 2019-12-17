@@ -104,4 +104,21 @@ describe("Circle", () => {
       assert.isOk(actual.isEqualTo(circle2));
     });
   });
+  describe("covers", () => {
+    it("should validate the point if it is inside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.covers(new Point(0, 2));
+      assert.isOk(actual);
+    });
+    it("should validate the point if it is on the circumference of the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.covers(new Point(0, 5));
+      assert.isOk(actual);
+    });
+    it("should invalidate the point if it is outside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.covers(new Point(0, 9));
+      assert.isNotOk(actual);
+    });
+  });
 });
