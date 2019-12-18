@@ -2,6 +2,7 @@ const assert = require("chai").assert;
 const Point = require("../src/point");
 const Line = require("../src/line");
 const Circle = require("../src/circle");
+const Rectangle = require("../src/rectangle");
 
 describe("Point", () => {
   describe("toString", () => {
@@ -97,6 +98,16 @@ describe("Point", () => {
       const circle = new Circle(new Point(0, 0), 7);
       const actual = point.isOn(circle);
       assert.isNotOk(actual);
+    });
+    it("should validate the point if it is on the rectangle circumference", () => {
+      const point = new Point(0, 2);
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      assert.isOk(point.isOn(rectangle));
+    });
+    it("should invalidate the point if it is not on the rectangle circumference", () => {
+      const point = new Point(-2, 6);
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      assert.isNotOk(point.isOn(rectangle));
     });
   });
 });
