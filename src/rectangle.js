@@ -61,6 +61,12 @@ class Rectangle {
       edgeDA.hasPoint(point)
     );
   }
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+    const [x1, x2] = [this.vertexA.x, this.vertexC.x].sort();
+    const [y1, y2] = [this.vertexA.y, this.vertexC.y].sort();
+    return x1 < point.x && point.x < x2 && y1 < point.y && point.y < y2;
+  }
 }
 
 module.exports = Rectangle;
