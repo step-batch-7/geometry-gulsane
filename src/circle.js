@@ -20,7 +20,7 @@ class Circle {
     return Math.PI * this.radius * this.radius;
   }
   get perimeter() {
-    return ((2 * 22) / 7) * this.radius;
+    return 2 * Math.PI * this.radius;
   }
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
@@ -31,7 +31,7 @@ class Circle {
   }
   covers(point) {
     if (!(point instanceof Point)) return false;
-    return this.centre.findDistanceTo(point) <= this.radius;
+    return this.centre.findDistanceTo(point) < this.radius;
   }
 }
 

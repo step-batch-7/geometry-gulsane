@@ -65,7 +65,7 @@ describe("Circle", () => {
     it("should return the perimeter of the circle", () => {
       const circle = new Circle({ x: 9, y: 8 }, 7);
       const actual = circle.perimeter;
-      assert.strictEqual(actual, 44);
+      assert.approximately(actual, 44, 0.1);
     });
   });
   describe("hasPoint", () => {
@@ -110,10 +110,10 @@ describe("Circle", () => {
       const actual = circle.covers(new Point(0, 2));
       assert.isOk(actual);
     });
-    it("should validate the point if it is on the circumference of the circle", () => {
+    it("should invalidate the point if it is on the circumference of the circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       const actual = circle.covers(new Point(0, 5));
-      assert.isOk(actual);
+      assert.isNotOk(actual);
     });
     it("should invalidate the point if it is outside the circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 5);

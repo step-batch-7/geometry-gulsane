@@ -1,9 +1,9 @@
 "use strict";
 const Point = require("./point");
 
-const isWithinRange = function(range, value) {
+const isNumInRange = function(range, value) {
   const [start, end] = range.sort();
-  return value >= start && value <= end;
+  return (value >= start && value <= end) || (value >= end && value <= start);
 };
 
 const arePointsColinear = function(point1, point2, point3) {
@@ -57,26 +57,28 @@ class Line {
     return slope == -Infinity ? Infinity : slope;
   }
   findX(y) {
-    if (!isWithinRange([this.start.y, this.end.y], y)) return NaN;
+    if (!isNumInRange([this.start.y, this.end.y], y)) return NaN;
+    if (this.start.x == this.end.x) return this.start.x;
     if (this.start.y == this.end.y) return this.start.x;
-    const yIntercept = this.start.y - this.start.x / this.slope;
+    const yIntercept = this.start.y - this.start.x * this.slope;
     return (y - yIntercept) / this.slope;
   }
   findY(x) {
-    if (!isWithinRange([this.start.x, this.end.x], x)) return NaN;
+    if (!isNumInRange([this.start.x, this.end.x], x)) return NaN;
+    if (this.start.y == this.end.y) return this.start.y;
     if (this.start.x == this.end.x) return this.start.y;
-    const yIntercept = this.start.y - this.start.x / this.slope;
+    const yIntercept = this.start.y - this.start.x * this.slope;
     return this.slope * x + yIntercept;
   }
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const isXWithinRange = isWithinRange([this.start.x, this.end.x], point.x);
-    const isYWithinRange = isWithinRange([this.start.y, this.end.y], point.y);
-    if (isXWithinRange && isYWithinRange) {
-      const slopeOfPoint = (this.start.y - point.y) / (this.start.x - point.x);
-      return this.slope == slopeOfPoint;
-    }
-    return false;
+    const isXWithinRange = isNumInRange([this.start.x, this.end.x], point.x);
+    const isYWithinRange = isNumInRange([this.start.y, this.end.y], point.y);
+    return (
+      isXWithinRange &&
+      isYWithinRange &&
+      arePointsColinear(this.start, this.end, point)
+    );
   }
 
   split() {

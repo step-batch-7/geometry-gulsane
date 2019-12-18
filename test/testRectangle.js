@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Rectangle = require("../src/rectangle");
+const Point = require("../src/point");
 
 describe("Rectangle", () => {
   describe("toString", () => {
@@ -78,6 +79,27 @@ describe("Rectangle", () => {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
       const rectangle2 = new Rectangle({ x: 3, y: 9 }, { x: 0, y: 0 });
       assert.isOk(rectangle1.isEqualTo(rectangle2));
+    });
+  });
+  describe("hasPoint", () => {
+    it("should invalidate the point if it not instance of Point", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      assert.isNotOk(rectangle.hasPoint({ x: 0, y: 2 }));
+    });
+    it("should validate the point which is on the circumference of rectangle", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      const point = new Point(2, 0);
+      assert.isOk(rectangle.hasPoint(point));
+    });
+    it("should invalidate the point which is outside the circumference of rectangle", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      const point = new Point(4, 3);
+      assert.isNotOk(rectangle.hasPoint(point));
+    });
+    it("should invalidate the point which is inside the circumference of rectangle", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 9 });
+      const point = new Point(1, 1);
+      assert.isNotOk(rectangle.hasPoint(point));
     });
   });
 });
